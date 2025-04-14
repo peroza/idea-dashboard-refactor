@@ -27,30 +27,30 @@ const Dashboard = () => {
   const userList = useMemo(() => {
     return users ?? [];
   }, [users]);
-  
+
   const projectList = useMemo(() => {
     return projects ?? [];
   }, [projects]);
 
   return (
     <div>
-        <h2>Dashboard</h2>
-        {loading && <p>Loading...</p>}
-        {error && <p>Error loading data.</p>}
+      <h2>Dashboard</h2>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error loading data.</p>}
 
-        <h3>Users</h3>
-        <ul>
-            {userList.map((user) => (
-                <li key={user.id}>{user.name}</li>
-            ))}
-        </ul>
+      <h3>Users</h3>
+      <ul>
+        {userList.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
 
-        <h3>Projects</h3>
-        <ul>
-            {projectList.map((project) => (
-                <li key={project.id}>{project.name}</li>
-            ))}
-        </ul>
+      <h3>Projects</h3>
+      <ul>
+        {projectList.map((project) => (
+          <li key={project.id}>{project.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
