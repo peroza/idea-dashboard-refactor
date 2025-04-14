@@ -39,8 +39,8 @@ The task involved:
 3. Open your browser and go to
    ```bash
    http://localhost:5173
-   You should see mock users and projects loaded after a short delay.
    ```
+   (_You should see mock users and projects loaded after a short delay._)
 
 ## Notes
 
