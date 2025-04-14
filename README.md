@@ -8,6 +8,7 @@ The goal was to refactor an existing `Dashboard` component to improve code quali
 ## Objectives
 
 The task involved:
+
 - Cleaning up an unstructured React component
 - Introducing state management through React Query
 - Reducing unnecessary re-renders with memoization
@@ -27,18 +28,22 @@ The task involved:
 
 ## How to Run
 
-1. Install dependencies  
+1. Install dependencies
    ```bash
    npm install
+   ```
 2. Start the development server
-    ```bash
-    npm run dev
+   ```bash
+   npm run dev
+   ```
 3. Open your browser and go to
-    ```bash
-    http://localhost:5173
-You should see mock users and projects loaded after a short delay.
+   ```bash
+   http://localhost:5173
+   You should see mock users and projects loaded after a short delay.
+   ```
 
 ## Notes
+
 No backend is required — the API calls are simulated using static data and delay.
 
 I used React Query’s object-based syntax (queryKey, queryFn) to be compatible with version 5.
@@ -46,6 +51,7 @@ I used React Query’s object-based syntax (queryKey, queryFn) to be compatible 
 The goal here was not just to "make it work," but to structure the project in a way that would be easy for a team to pick up, understand, and extend.
 
 ## Author
+
 Andrea Giovanni Perozziello
 
 [github.com/peroza](https://github.com/peroza)
