@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchUsers, fetchProjects } from "../services/api";
 
@@ -7,13 +7,19 @@ const Dashboard = () => {
     data: users,
     isLoading: usersLoading,
     error: usersError,
-  } = useQuery(["users"], fetchUsers);
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+  });
 
   const {
     data: projects,
     isLoading: projectsLoading,
     error: projectsError,
-  } = useQuery(["projects"], fetchProjects);
+  } = useQuery({
+    queryKey: ["projects"],
+    queryFn: fetchProjects,
+  });
 
   const loading = usersLoading || projectsLoading;
   const error = usersError || projectsError;
