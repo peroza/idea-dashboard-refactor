@@ -54,6 +54,7 @@ I compared the original and refactored behavior using:
   - Added random errors and latency to test loading/error states
 
 ---
+
 <div style="page-break-after: always;"></div>
 
 ## 4. Why This Version is Better
@@ -71,9 +72,10 @@ I compared the original and refactored behavior using:
 
 ## 5. Tools & Libraries Used
 
-- **React Query v5** – for caching, async state, and performance
-- **React hooks (`useMemo`)** – to reduce unnecessary rendering
-- **Mock API** – using local data + `setTimeout` to simulate real latency
+- React Query v5 – for caching, async state, and performance
+- React hooks (`useMemo`) – to reduce unnecessary rendering
+- Mock API – using local data + `setTimeout` to simulate real latency
+- ESLint & Prettier – for formatting and consistent code style
 
 ---
 
@@ -83,6 +85,44 @@ I compared the original and refactored behavior using:
 - Add global error boundary
 - Add loading skeletons instead of basic `<p>Loading...</p>`
 - Write unit tests for the API layer and UI rendering logic
+
+---
+
+## 7. Maintainability, Scalability & Code Consistency
+
+### Strategies for Maintainability & Scalability
+
+To ensure the codebase stays clean and maintainable as it grows:
+
+- I modularized responsibilities: API logic lives in a separate service (`api.js`), and UI logic stays in the component.
+- I used React Query to abstract async state management, which removes the need for manual `useState` / `useEffect` patterns and ensures data access stays declarative and centralized.
+- I applied React hooks like `useMemo` to avoid unnecessary re-renders and promote performance efficiency.
+- The app is designed so that adding new data sources or views would require minimal change to existing logic — enabling team scaling.
+
+### Personal Experience
+
+In previous work on multi-person React projects, I’ve experienced:
+- Merge conflicts due to inconsistent formatting
+- Code duplication from poor separation of concerns
+- Difficulty onboarding new developers without a clear architecture
+
+To solve this, I typically introduce:
+- A consistent folder structure (by feature or concern)
+- Shared reusable logic (via hooks or services)
+- Documentation and walkthroughs for setting up the local environment
+
+This test project follows that same mindset — lean, scalable, and clear.
+
+### Code Consistency in Teams
+
+For this test, I implemented the following:
+
+- ESLint with Flat Config for modern linting
+- Prettier, fully integrated with eslint-plugin-prettier
+- Airbnb style guide as base formatting reference
+- React version detection for compatibility and warning suppression
+
+In real-world projects, I’d add Husky + lint-staged to automate linting and formatting on each commit. This helps prevent formatting drift over time, especially in larger teams.
 
 ---
 
