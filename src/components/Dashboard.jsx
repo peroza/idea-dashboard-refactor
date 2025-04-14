@@ -1,38 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { fetchUsers, fetchProjects } from "../services/api";
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const {
+    data: users,
+    isLoading: usersLoading,
+    error: usersError,
+  } = useQuery(["users"], fetchUsers);
 
-  useEffect(() => {
-    const getData = async () => {
-      setLoading(true);
-      try {
-        const [usersData, projectsData] = await Promise.all([
-          fetchUsers(),
-          fetchProjects(),
-        ]);
-        setUsers(usersData);
-        setProjects(projectsData);
-      } catch (err) {
-        console.error("API error:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getData();
-  }, []);
+  const {
+    data: projects,
+    isLoading: projectsLoading,
+    error: projectsError,
+  } = useQuery(["projects"], fetchProjects);
+
+  const loading = usersLoading || projectsLoading;
+  const error = usersError || projectsError;
 
   return (
     <div>
       <h2>Dashboard</h2>
       {loading && <p>Loading...</p>}
+      {error && <p>Error loading data.</p>}
+
       <h3>Users</h3>
-      <ul>{users.map((user) => <li key={user.id}>{user.name}</li>)}</ul>
+      <ul>
+        {users?.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+
       <h3>Projects</h3>
-      <ul>{projects.map((project) => <li key={project.id}>{project.name}</li>)}</ul>
+      <ul>
+        {projects?.map((project) => (
+          <li key={project.id}>{project.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
